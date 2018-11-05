@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lp2_Steam_List", "lp2_Steam_List\lp2_Steam_List.csproj", "{ACFF49AF-7175-40B4-9349-8D7A4F6D0FD6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACFF49AF-7175-40B4-9349-8D7A4F6D0FD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACFF49AF-7175-40B4-9349-8D7A4F6D0FD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACFF49AF-7175-40B4-9349-8D7A4F6D0FD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACFF49AF-7175-40B4-9349-8D7A4F6D0FD6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B26D94D4-9FA9-4719-BBAF-751A59B27F93}
+	EndGlobalSection
+EndGlobal
