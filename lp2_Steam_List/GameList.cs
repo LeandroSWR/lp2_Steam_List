@@ -44,8 +44,8 @@ namespace lp2_Steam_List {
                     }
                 }
             }
-            catch {
-                Console.WriteLine("Could not read the file.");
+            catch (Exception e){
+                Console.WriteLine($"Error: {e.Message}");
             }
         }
     }
