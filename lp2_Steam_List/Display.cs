@@ -21,6 +21,8 @@ namespace lp2_Steam_List {
 
         private void DrawMenu() {
 
+            Console.Clear();
+
             Console.WriteLine(" _________________________________");
             Console.WriteLine("|                                 |");
             Console.WriteLine("|  1. Mostrar Informação do Jogo  |");
