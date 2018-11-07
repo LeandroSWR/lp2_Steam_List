@@ -18,13 +18,15 @@ namespace lp2_Steam_List {
         private void FillDictionary() {
             try {
                 using (StreamReader sr = new StreamReader(path)) {
+
+                    bool skipFirstLine = false;
                     string s = "";
                     Game game;
                     int nKey = -1;
 
                     while ((s = sr.ReadLine()) != null) {
                         string[] line = s.Split(',');
-
+                 
                         // Set a dinamic key, acording to the search parameters
                         if (nKey == -1) {
                             for (int i = 0; i < line.Length; i++) {
@@ -34,11 +36,17 @@ namespace lp2_Steam_List {
                             }
                         }
 
-                        game = new Game(s);
+                        if (skipFirstLine != false) {
 
-                        if (!ContainsKey(line[nKey])) {
-                            Add(line[nKey], game);
+                            game = new Game(s);
+
+                            if (!ContainsKey(line[nKey])) {
+                                Add(line[nKey], game);
+                            }
                         }
+
+                        skipFirstLine = true;
+                        
                     }
                 }
             }
