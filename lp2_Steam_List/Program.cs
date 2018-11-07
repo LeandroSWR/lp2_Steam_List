@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace lp2_Steam_List {
     class Program {
+
+        private static string DefaultKey { get; } = "ID";
+        
         static void Main(string[] args) {
-            GameList list = new GameList("ID", args);
+
+            Display myDisplay = new Display(DefaultKey, args);
         }
     }
 }
