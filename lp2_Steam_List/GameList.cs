@@ -5,17 +5,15 @@ using System.IO;
 namespace lp2_Steam_List {
     class GameList : Dictionary<string, Game> {
         static string path;
-        string key;
+        readonly string key;
 
-        public GameList(string key, string[] arg) {
+        public GameList(string key, string arg) {
             this.key = key;
-            path = arg[0];
+            path = arg;
             FillDictionary();
         }
 
-        public GameList(string key) {
-
-        }
+        public GameList(string key) { }
 
         private void FillDictionary() {
             try {
