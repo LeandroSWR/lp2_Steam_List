@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace lp2_Steam_List {
     class Game {
-        int ID, RequiredAge, DLCCount, Metacritic, MovieCount, RecommendationCount,
+        int RequiredAge, DLCCount, Metacritic, MovieCount, RecommendationCount,
             ScreenshotCount, Owners, NumberOfPlayers, AchievementCount;
         string Name, AboutText;
         DateTime ReleaseDate;
         bool ControllerSupport, PlatformWindows, PlatformLinux, PlatformMac, 
             CategorySinglePlayer, CategoryMultiplayer, CategoryCoop, 
             CategoryIncludeLevelEditor, CategoryVRSupport;
-        Uri SupportURL, HeaderImage, Website;
+        Uri SupportURL, Website;
+        public Uri HeaderImage;
+        public int ID;
 
         public Game(string stream) {
             string[] parse = stream.Split(',');
@@ -24,7 +26,7 @@ namespace lp2_Steam_List {
         private void SaveData(string[] parse) {
             ID = Convert.ToInt32(parse[0]);
             Name = parse[1];
-            ReleaseDate = Convert.ToDateTime(parse[2]);
+            DateTime.TryParse(parse[2], out ReleaseDate);
             RequiredAge = Convert.ToInt32(parse[3]);
             DLCCount = Convert.ToInt32(parse[4]);
             Metacritic = Convert.ToInt32(parse[5]);
@@ -43,10 +45,25 @@ namespace lp2_Steam_List {
             CategoryCoop = Convert.ToBoolean(parse[18]);
             CategoryIncludeLevelEditor = Convert.ToBoolean(parse[19]);
             CategoryVRSupport = Convert.ToBoolean(parse[20]);
-            SupportURL = new Uri(parse[21]);
+            Uri.TryCreate(parse[21], UriKind.Absolute, out SupportURL);
             AboutText = parse[22];
-            HeaderImage = new Uri(parse[22]);
-            Website = new Uri(parse[23]);
+            Uri.TryCreate(parse[23], UriKind.Absolute, out HeaderImage);
+            Uri.TryCreate(parse[24], UriKind.Absolute, out Website);
+        }
+
+        public override string ToString() {
+            return string.Format($"ID: {ID}\n Name: {Name}\n ReleaseDate: {ReleaseDate}\n " +
+                $"RequiredAge: {RequiredAge}\n DLCCount: {DLCCount}\n Metacritic: {Metacritic}\n " +
+                $"MovieCount: {MovieCount}\n RecommendationCount: {RecommendationCount}\n " +
+                $"ScreenshotCount: {ScreenshotCount}\n Owners: {Owners}\n NumberOfPlayers: " +
+                $"{NumberOfPlayers}\n AchievementCount: {AchievementCount}\n ControllerSupport: " +
+                $"{ControllerSupport}\n PlatformWindows: {PlatformWindows}\n PlatformLinux: " +
+                $"{PlatformLinux}\n PlatformMac: {PlatformMac}\n CategorySinglePlayer: " +
+                $"{CategorySinglePlayer}\n CategoryMultiplayer: {CategoryMultiplayer}\n " +
+                $"CategoryCoop: {CategoryCoop}\n CategoryIncludeLevelEditor: " +
+                $"{CategoryIncludeLevelEditor}\n CategoryVRSupport: {CategoryVRSupport}\n " +
+                $"SupportURL: {SupportURL}\n AboutText: {AboutText}\n HeaderImage: " +
+                $"{HeaderImage}\n Website: {Website}");
         }
     }
 }
