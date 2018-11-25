@@ -11,10 +11,12 @@ namespace lp2_Steam_List {
 
         private readonly string key;
         private string id, orderCriteria;
+        private int currentPage = 0;
 
         GameList list;
         Filters filters;
         FilteredList filteredList;
+        Game[] filteredGameDisplay;
 
         public Display(string key, string[] arg) {
 
@@ -94,6 +96,24 @@ namespace lp2_Steam_List {
             FilterSelection();
         }
 
+        private void GamePage() {
+
+            filteredGameDisplay = new Game[filteredList.Count];
+
+            int i = 0;
+            
+            foreach (Game g in filteredList) {
+
+                if (g != null) {
+
+                    filteredGameDisplay[i] = g;
+                    i++;
+                }
+            }
+
+            PageSelection();
+        }
+
         private void Selection() {
 
             switch (Console.ReadLine()) {
@@ -138,12 +158,8 @@ namespace lp2_Steam_List {
                 case "3":
 
                     filteredList = new FilteredList(filters, list);
-                    
-                    foreach(Game g in filteredList) {
-                        if(g != null) {
-                            Console.WriteLine(g.ToString());
-                        }
-                    }
+
+                    GamePage();
 
                     break;
 
@@ -259,6 +275,48 @@ namespace lp2_Steam_List {
                     break;
             }
             GameFilters();
+        }
+
+        private void PageSelection() {
+
+            Console.Clear();
+
+            Console.WriteLine(filteredGameDisplay[currentPage] + "\n");
+
+            Console.WriteLine($"Left Arrow - Go Back  | {currentPage} - " +
+                $"{filteredGameDisplay.Length - 1} |  Right Arrow - Go Forward");
+
+            switch (Console.ReadKey().Key) {
+
+                case ConsoleKey.LeftArrow:
+
+                    if (currentPage != 0) {
+
+                        currentPage--;
+                    }
+
+                    break;
+
+                case ConsoleKey.RightArrow:
+
+                    if(currentPage < filteredGameDisplay.Length - 1) {
+
+                        currentPage++;
+                    }
+
+                    break;
+
+                case ConsoleKey.Escape:
+
+                    return;
+
+                default:
+
+                    PageSelection();
+                    break;
+            }
+
+            PageSelection();
         }
 
         private void DisplayInformation() {
