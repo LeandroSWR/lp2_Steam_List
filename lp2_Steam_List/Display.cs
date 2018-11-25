@@ -7,30 +7,46 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace lp2_Steam_List {
+
+    /// <summary>
+    /// This Class is responsible for most drawings present on the program
+    /// </summary>
     class Display {
 
-        private readonly string key;
-        private string id, orderCriteria;
-        private int currentPage = 0;
+        private readonly string key;       // The key attributed to the dictionary
+        private string id, orderCriteria;  // The ID given to a game on the file and the criteria from which they will be ordered
+        private int currentPage = 0;       // The currently selected page that shows info about a game
 
-        GameList list;
-        Filters filters;
-        FilteredList filteredList;
-        Game[] filteredGameDisplay;
+        // A few Class derived variables to be instanced later on
+        private GameList list;
+        private Filters filters;
+        private FilteredList filteredList;
+        private Game[] filteredGameDisplay;
 
+        /// <summary>
+        /// The Class Constructor
+        /// </summary>
+        /// <param name="key">The key belonging to the dictionary</param>
+        /// <param name="arg">Arguments accepted by the console</param>
         public Display(string key, string[] arg) {
+            
+            this.key = key;                     // The key this method accepts is the one above it
+            list = new GameList(key, arg[0]);   // Instantiates a list of games 
+            filters = new Filters();            // Instantiates the filters from the searches
 
-            this.key = key;
-            list = new GameList(key, arg[0]);
-            filters = new Filters();
-
+            // Calls the method to draw the Menu
             DrawMenu();
         }
 
+        /// <summary>
+        /// Draws the Menu
+        /// </summary>
         private void DrawMenu() {
 
+            // Clears the Console
             Console.Clear();
 
+            // WriteLines that print the Menu
             Console.WriteLine(" _________________________________");
             Console.WriteLine("|                                 |");
             Console.WriteLine("|  1. Mostrar Informação do Jogo  |");
@@ -40,13 +56,19 @@ namespace lp2_Steam_List {
             Console.WriteLine("|  3. Sair                        |");
             Console.WriteLine("|_________________________________|");
 
+            // Calls the Selection method which waits for input
             Selection();
         }
 
+        /// <summary>
+        /// Draws the Search Menu
+        /// </summary>
         private void DrawSearchMenu() {
 
+            // Clears the Console
             Console.Clear();
 
+            // WriteLines that print the Search Menu
             Console.WriteLine(" ________________________________________");
             Console.WriteLine("|                                        |");
             Console.WriteLine("|  1. Especificar critério de ordenação  |");
@@ -58,13 +80,19 @@ namespace lp2_Steam_List {
             Console.WriteLine("|  4. Voltar atrás                       |");
             Console.WriteLine("|________________________________________|");
 
+            // Calls the SearchMenuSelection method which waits for input
             SearchMenuSelection();
         }
 
+        /// <summary>
+        /// Draws the parameters responsible for ordering the games
+        /// </summary>
         private void OrderCriteria() {
 
+            // Clears the Console
             Console.Clear();
 
+            // WriteLines that print the ordering parameters
             Console.WriteLine("Selecciona o critério de ordenação:\n");
             Console.WriteLine("1. Por ID (ascendente)\n" +
                 "2. Por nome(ascendente, por ordem alfabética)\n" +
@@ -73,17 +101,23 @@ namespace lp2_Steam_List {
                 "6. Por número de recomendações(descendente)\n" +
                 "7. Por número de pessoas que têm o jogo(descendente)\n" +
                 "8. Por número de pessoas que efetivamente jogaram ao jogo(descendente)\n" +
-                "9. Por número de achievements(descendente)" + 
+                "9. Por número de achievements(descendente)\n" + 
                 
-                "0. Back");
+                "\n0. Back");
 
+            // Calls the CriteriaSelection method which waits for input
             CriteriaSelection();
         }
 
+        /// <summary>
+        /// Draws the parameters responsible for filtering the games
+        /// </summary>
         private void GameFilters() {
 
+            // Clears the Console
             Console.Clear();
 
+            // WriteLines that print the filtering parameters
             Console.WriteLine("\n1. Por nome\n2. Por data\n3. Por idade\n" +
                 "4. Por nota do Metacritic\n5. Por número de recomendações\n" +
                 "6. Por suporte de controlador\n7. Por suporte para Windows\n" +
@@ -93,13 +127,19 @@ namespace lp2_Steam_List {
                 "13. Por inclusão de editor de níveis\n14. Por suporte para VR\n");
             Console.Write("0. Back");
 
+            // Calls the FilterSelection method which waits for input
             FilterSelection();
         }
 
+        /// <summary>
+        /// Defines each game as a 'page' that can be viewed like a book
+        /// </summary>
         private void GamePage() {
 
+            // Initiates a previously established array with the size of the List of filters selected
             filteredGameDisplay = new Game[filteredList.Count];
 
+            // Simple local variable that gets later incremented
             int i = 0;
             
             foreach (Game g in filteredList) {
@@ -111,6 +151,7 @@ namespace lp2_Steam_List {
                 }
             }
 
+            // Calls the PageSelection method which waits for input
             PageSelection();
         }
 
@@ -205,10 +246,14 @@ namespace lp2_Steam_List {
                 case "9":
                     orderCriteria = "achievements";
                     break;
+                case "0":
+                    DrawSearchMenu();
+                    break;
                 default:
                     CriteriaSelection();
                     break;
             }
+            DrawSearchMenu();
         }
 
         private void FilterSelection() {
