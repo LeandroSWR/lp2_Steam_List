@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace lp2_Steam_List {
     class Game {
+
         public int id, requiredAge, dlcCount, metacritic, movieCount, recommendationCount,
             screenshotCount, owners, numberOfPlayers, achievementCount;
         public string name, aboutText;
@@ -17,11 +18,13 @@ namespace lp2_Steam_List {
         public Uri supportURL, headerImage, website;
 
         public Game(string stream) {
+
             string[] parse = stream.Split(',');
             SaveData(parse);
         }
 
         private void SaveData(string[] parse) {
+
             id = Convert.ToInt32(parse[0]);
             name = parse[1];
             DateTime.TryParse(parse[2], out releaseDate);
