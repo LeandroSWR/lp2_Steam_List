@@ -157,7 +157,7 @@ namespace lp2_Steam_List {
 
                 case "3":
 
-                    filteredList = new FilteredList(filters, list);
+                    filteredList = new FilteredList(filters, list, orderCriteria);
 
                     GamePage();
 
@@ -281,10 +281,11 @@ namespace lp2_Steam_List {
 
             Console.Clear();
 
-            Console.WriteLine(filteredGameDisplay[currentPage] + "\n");
+            Console.WriteLine(filteredGameDisplay[currentPage].ToString() + "\n");
 
             Console.WriteLine($"Left Arrow - Go Back  | {currentPage} - " +
-                $"{filteredGameDisplay.Length - 1} |  Right Arrow - Go Forward");
+                $"{filteredGameDisplay.Length - 1} |  Right Arrow - Go Forward\n");
+            Console.WriteLine("Esc + Enter para sair.");
 
             switch (Console.ReadKey().Key) {
 
@@ -335,9 +336,9 @@ namespace lp2_Steam_List {
             string imagePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
             using (WebClient client = new WebClient()) {
-                if (game.HeaderImage != null) {
-                    client.DownloadFile(game.HeaderImage, imagePath + game.ID + ".jpg");
-                    Process.Start(imagePath + game.ID + ".jpg");
+                if (game.headerImage != null) {
+                    client.DownloadFile(game.headerImage, imagePath + game.id + ".jpg");
+                    Process.Start(imagePath + game.id + ".jpg");
                 }
             }
         }
