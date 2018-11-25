@@ -14,6 +14,7 @@ namespace lp2_Steam_List {
 
         GameList list;
         Filters filters;
+        FilteredList filteredList;
 
         public Display(string key, string[] arg) {
 
@@ -68,7 +69,9 @@ namespace lp2_Steam_List {
                 "6. Por número de recomendações(descendente)\n" +
                 "7. Por número de pessoas que têm o jogo(descendente)\n" +
                 "8. Por número de pessoas que efetivamente jogaram ao jogo(descendente)\n" +
-                "9. Por número de achievements(descendente)");
+                "9. Por número de achievements(descendente)" + 
+                
+                "0. Back");
 
             CriteriaSelection();
         }
@@ -130,8 +133,14 @@ namespace lp2_Steam_List {
 
                 case "3":
 
-                    // Search
+                    filteredList = new FilteredList(filters, list);
                     
+                    foreach(Game g in filteredList) {
+                        if(g != null) {
+                            Console.WriteLine(g.ToString());
+                        }
+                    }
+
                     break;
 
                 case "4":
@@ -238,6 +247,9 @@ namespace lp2_Steam_List {
                 case "14":
                     filters.CategoryVRSupport = true;
                     break;
+                case "0":
+                    DrawSearchMenu();
+                    break;
                 default:
                     CriteriaSelection();
                     break;
@@ -259,8 +271,8 @@ namespace lp2_Steam_List {
         private void DisplayImage(Game game) {
             using (WebClient client = new WebClient()) {
                 if (game.HeaderImage != null) {
-                    client.DownloadFile(game.HeaderImage, @"C:\Users\Shadow\Desktop\" + game.ID + ".jpg");
-                    Process.Start(@"C:\Users\Shadow\Desktop\" + game.ID + ".jpg");
+                    client.DownloadFile(game.HeaderImage, @"C:\Users\Public\Desktop\" + game.ID + ".jpg");
+                    Process.Start(@"C:\Users\Public\Desktop\" + game.ID + ".jpg");
                 }
             }
         }
