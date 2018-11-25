@@ -27,7 +27,7 @@ namespace lp2_Steam_List {
 
         private void DrawMenu() {
 
-            //Console.Clear();
+            Console.Clear();
 
             Console.WriteLine(" _________________________________");
             Console.WriteLine("|                                 |");
@@ -60,7 +60,9 @@ namespace lp2_Steam_List {
         }
 
         private void OrderCriteria() {
+
             Console.Clear();
+
             Console.WriteLine("Selecciona o critério de ordenação:\n");
             Console.WriteLine("1. Por ID (ascendente)\n" +
                 "2. Por nome(ascendente, por ordem alfabética)\n" +
@@ -77,7 +79,9 @@ namespace lp2_Steam_List {
         }
 
         private void GameFilters() {
+
             Console.Clear();
+
             Console.WriteLine("\n1. Por nome\n2. Por data\n3. Por idade\n" +
                 "4. Por nota do Metacritic\n5. Por número de recomendações\n" +
                 "6. Por suporte de controlador\n7. Por suporte para Windows\n" +
@@ -196,56 +200,56 @@ namespace lp2_Steam_List {
                 case "1":
                     Console.Clear();
                     Console.WriteLine("Intruduz o nome:");
-                    filters.Name = Console.ReadLine();
+                    filters.name = Console.ReadLine();
                     break;
                 case "2":
                     Console.Clear();
                     Console.WriteLine("Ex de data: (Nov 1 2000)");
                     Console.WriteLine("Introduz a data apartir da qual o jogo foi lançado:");
                     string date = Console.ReadLine();
-                    DateTime.TryParse(date, out filters.ReleaseDate);
+                    DateTime.TryParse(date, out filters.releaseDate);
                     break;
                 case "3":
                     Console.Clear();
                     Console.WriteLine("Introduz a idade apartir da qual o jogo pode se acedido:");
-                    filters.RequiredAge = Convert.ToInt32(Console.ReadLine());
+                    filters.requiredAge = Convert.ToInt32(Console.ReadLine());
                     break;
                 case "4":
                     Console.Clear();
                     Console.WriteLine("Introduz a nota minima de metacritic:");
-                    filters.Metacritic = Convert.ToInt32(Console.ReadLine());
+                    filters.metacritic = Convert.ToInt32(Console.ReadLine());
                     break;
                 case "5":
                     Console.Clear();
                     Console.WriteLine("Introduz o numero minimo de recomendações:");
-                    filters.RecommendationCount = Convert.ToInt32(Console.ReadLine());
+                    filters.recommendationCount = Convert.ToInt32(Console.ReadLine());
                     break;
                 case "6":
-                    filters.ControllerSupport = true;
+                    filters.controllerSupport = true;
                     break;
                 case "7":
-                    filters.PlatformWindows = true;
+                    filters.platformWindows = true;
                     break;
                 case "8":
-                    filters.PlatformLinux = true;
+                    filters.platformLinux = true;
                     break;
                 case "9":
-                    filters.PlatformMac = true;
+                    filters.platformMac = true;
                     break;
                 case "10":
-                    filters.CategorySinglePlayer = true;
+                    filters.categorySinglePlayer = true;
                     break;
                 case "11":
-                    filters.CategoryMultiplayer = true;
+                    filters.categoryMultiplayer = true;
                     break;
                 case "12":
-                    filters.CategoryCoop = true;
+                    filters.categoryCoop = true;
                     break;
                 case "13":
-                    filters.CategoryIncludeLevelEditor = true;
+                    filters.categoryIncludeLevelEditor = true;
                     break;
                 case "14":
-                    filters.CategoryVRSupport = true;
+                    filters.categoryVRSupport = true;
                     break;
                 case "0":
                     DrawSearchMenu();
@@ -269,10 +273,13 @@ namespace lp2_Steam_List {
         }
 
         private void DisplayImage(Game game) {
+
+            string imagePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
             using (WebClient client = new WebClient()) {
                 if (game.HeaderImage != null) {
-                    client.DownloadFile(game.HeaderImage, @"C:\Users\Public\Desktop\" + game.ID + ".jpg");
-                    Process.Start(@"C:\Users\Public\Desktop\" + game.ID + ".jpg");
+                    client.DownloadFile(game.HeaderImage, imagePath + game.ID + ".jpg");
+                    Process.Start(imagePath + game.ID + ".jpg");
                 }
             }
         }

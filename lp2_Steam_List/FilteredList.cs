@@ -21,20 +21,20 @@ namespace lp2_Steam_List {
 
 
             IEnumerable<Game> filteredGame = temp.Where(game => (game.Name.IndexOf(
-                    filter.Name, StringComparison.OrdinalIgnoreCase) >= 0 || filter.Name == "") &&
-                    (game.ReleaseDate >= filter.ReleaseDate || filter.ReleaseDate == null) &&
-                    (game.RequiredAge >= filter.RequiredAge || filter.RequiredAge == 0) &&
-                    (game.Metacritic >= filter.Metacritic || filter.Metacritic == 0) &&
-                    (game.RecommendationCount >= filter.RecommendationCount || filter.RecommendationCount == 0) &&
-                    (game.ControllerSupport || !filter.ControllerSupport) &&
-                    (game.PlatformWindows || !filter.PlatformWindows) &&
-                    (game.PlatformLinux || !filter.PlatformLinux) &&
-                    (game.PlatformMac || !filter.PlatformMac) &&
-                    (game.CategorySinglePlayer || !filter.CategorySinglePlayer) &&
-                    (game.CategoryMultiplayer || !filter.CategoryMultiplayer) &&
-                    (game.CategoryCoop || !filter.CategoryCoop) &&
-                    (game.CategoryIncludeLevelEditor || !filter.CategoryIncludeLevelEditor) &&
-                    (game.CategoryVRSupport || !filter.CategoryVRSupport));
+                    filter.name, StringComparison.OrdinalIgnoreCase) >= 0 || filter.name == "") &&
+                    (game.ReleaseDate >= filter.releaseDate || filter.releaseDate == null) &&
+                    (game.RequiredAge >= filter.requiredAge || filter.requiredAge == 0) &&
+                    (game.Metacritic >= filter.metacritic || filter.metacritic == 0) &&
+                    (game.RecommendationCount >= filter.recommendationCount || filter.recommendationCount == 0) &&
+                    (game.ControllerSupport || !filter.controllerSupport) &&
+                    (game.PlatformWindows || !filter.platformWindows) &&
+                    (game.PlatformLinux || !filter.platformLinux) &&
+                    (game.PlatformMac || !filter.platformMac) &&
+                    (game.CategorySinglePlayer || !filter.categorySinglePlayer) &&
+                    (game.CategoryMultiplayer || !filter.categoryMultiplayer) &&
+                    (game.CategoryCoop || !filter.categoryCoop) &&
+                    (game.CategoryIncludeLevelEditor || !filter.categoryIncludeLevelEditor) &&
+                    (game.CategoryVRSupport || !filter.categoryVRSupport));
 
             foreach (Game g in filteredGame) {
                 Add(g);
