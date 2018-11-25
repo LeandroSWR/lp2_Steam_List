@@ -63,7 +63,7 @@ namespace lp2_Steam_List {
                 case "1":
                     Console.WriteLine("Input game ID:");
                     id = Console.ReadLine();
-                    DisplayResults();
+                    DisplayInformation();
                     break;
 
                 case "2":
@@ -83,16 +83,20 @@ namespace lp2_Steam_List {
             }
         }
 
-        private void DisplayResults() {
+        private void DisplayInformation() {
             
             foreach (KeyValuePair<string, Game> kvp in list) {
                 if (kvp.Key == id) {
                     Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
-                    // Download Image to display
-                    using (WebClient client = new WebClient()) {
-                        client.DownloadFile(kvp.Value.HeaderImage, @"C:\Users\Shadow\Desktop\" + kvp.Value.ID + ".jpg");
-                        Process.Start(@"C:\Users\Shadow\Desktop\" + kvp.Value.ID + ".jpg");
-                    }
+                    DisplayImage(kvp.Value);                }
+            }
+        }
+
+        private void DisplayImage(Game game) {
+            using (WebClient client = new WebClient()) {
+                if (game.HeaderImage != null) {
+                    client.DownloadFile(game.HeaderImage, @"C:\Users\Shadow\Desktop\" + game.ID + ".jpg");
+                    Process.Start(@"C:\Users\Shadow\Desktop\" + game.ID + ".jpg");
                 }
             }
         }
