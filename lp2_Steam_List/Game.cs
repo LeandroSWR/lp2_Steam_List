@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace lp2_Steam_List {
     class Game {
-        int RequiredAge, DLCCount, Metacritic, MovieCount, RecommendationCount,
+        public int RequiredAge, DLCCount, Metacritic, MovieCount, RecommendationCount,
             ScreenshotCount, Owners, NumberOfPlayers, AchievementCount;
-        string Name, AboutText;
-        DateTime ReleaseDate;
-        bool ControllerSupport, PlatformWindows, PlatformLinux, PlatformMac, 
+        public string Name, AboutText;
+        public DateTime ReleaseDate;
+        public bool ControllerSupport, PlatformWindows, PlatformLinux, PlatformMac, 
             CategorySinglePlayer, CategoryMultiplayer, CategoryCoop, 
             CategoryIncludeLevelEditor, CategoryVRSupport;
         Uri SupportURL, Website;
