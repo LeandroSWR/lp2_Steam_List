@@ -49,7 +49,12 @@ namespace lp2_Steam_List {
         public bool categoryIncludeLevelEditor;
         /** \brief Game supports VR */
         public bool categoryVRSupport;
-        public Uri supportURL, headerImage, website; // Declares all the necessary Uris
+        /** \brief Game support URL */
+        public Uri supportURL;
+        /** \brief Link to the Game header image */
+        public Uri headerImage;
+        /** \brief Link to the game WebSite */
+        public Uri website;
 
         /// <summary>
         /// Game costructor takes in a string argument
