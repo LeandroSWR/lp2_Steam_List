@@ -5,6 +5,7 @@ namespace lp2_Steam_List {
     /// Holds all possible filters as variable to be later compared with the ones present in a GameList
     /// </summary>
     class Filters {
+
         public int requiredAge, metacritic, recommendationCount; // Declares all ints
         public string name = ""; // Declares all strings
         public DateTime releaseDate; // Declares all DateTimes
