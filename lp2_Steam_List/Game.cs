@@ -64,18 +64,18 @@ namespace lp2_Steam_List {
         /// </summary>
         /// <returns></returns>
         public override string ToString() {
-            return string.Format($"ID: {id}\nName: {name}\nReleaseDate: {releaseDate}\n" +
-                $"RequiredAge: {requiredAge}\nDLCCount: {dlcCount}\nMetacritic: {metacritic}\n" +
-                $"MovieCount: {movieCount}\nRecommendationCount: {recommendationCount}\n" +
-                $"ScreenshotCount: {screenshotCount}\nOwners: {owners}\nNumberOfPlayers: " +
-                $"{numberOfPlayers}\nAchievementCount: {achievementCount}\nControllerSupport: " +
-                $"{controllerSupport}\nPlatformWindows: {platformWindows}\nPlatformLinux: " +
-                $"{platformLinux}\nPlatformMac: {platformMac}\nCategorySinglePlayer: " +
-                $"{categorySinglePlayer}\nCategoryMultiplayer: {categoryMultiplayer}\n" +
-                $"CategoryCoop: {categoryCoop}\nCategoryIncludeLevelEditor: " +
-                $"{categoryIncludeLevelEditor}\nCategoryVRSupport: {categoryVRSupport}\n" +
-                $"SupportURL: {supportURL}\nAboutText: {aboutText}\nHeaderImage: " +
-                $"{headerImage}\nWebsite: {website}");
+            return string.Format($"ID: {id}\nName: {name}\n" +
+                $"ReleaseDate: {releaseDate.ToString("dd/MM/yyyy")}\nRequiredAge: {requiredAge}" +
+                $"\nDLCCount: {dlcCount}\nMetacritic: {metacritic}\nMovieCount: {movieCount}\n" +
+                $"RecommendationCount: {recommendationCount}\nScreenshotCount: {screenshotCount}" +
+                $"\nOwners: {owners}\nNumberOfPlayers: {numberOfPlayers}\n" +
+                $"AchievementCount: {achievementCount}\nControllerSupport: {controllerSupport}\n" +
+                $"PlatformWindows: {platformWindows}\nPlatformLinux: {platformLinux}\n" +
+                $"PlatformMac: {platformMac}\nCategorySinglePlayer: {categorySinglePlayer}\n" +
+                $"CategoryMultiplayer: {categoryMultiplayer}\nCategoryCoop: {categoryCoop}\n" +
+                $"CategoryIncludeLevelEditor: {categoryIncludeLevelEditor}\n" +
+                $"CategoryVRSupport: {categoryVRSupport}\nSupportURL: {supportURL}\n" +
+                $"AboutText: {aboutText}\nHeaderImage: {headerImage}\nWebsite: {website}");
         }
     }
 }

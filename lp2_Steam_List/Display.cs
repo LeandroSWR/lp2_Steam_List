@@ -366,7 +366,6 @@ namespace lp2_Steam_List {
             
             foreach (KeyValuePair<string, Game> kvp in list) {
                 if (kvp.Key == id) {
-                    Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
                     DisplayImage(kvp.Value);
                     Console.ReadLine();
                 }
