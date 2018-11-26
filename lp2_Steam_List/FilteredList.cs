@@ -5,28 +5,39 @@ using System.Linq;
 namespace lp2_Steam_List {
     class FilteredList : List<Game> {
 
-        private GameList games;
-        private Filters filter;
-        private List<Game> tempList;
-        private string orderCriteria;
+        private GameList games; // Declares a new GameList
+        private Filters filter; // Declares a new Filters
+        private List<Game> tempList; // Declares a new tempList
+        private string orderCriteria; // Declares a new oderCriteria
 
+        /// <summary>
+        /// FilteredList Constructor
+        /// </summary>
+        /// <param name="filter">Game Object that contains all the filters information</param>
+        /// <param name="games">The main dictionary of Game</param>
+        /// <param name="orderCriteria">Holds a string that represents the order criteria</param>
         public FilteredList(Filters filter, GameList games, string orderCriteria) {
-            this.games = games;
-            this.filter = filter;
-            this.orderCriteria = orderCriteria;
-            tempList = new List<Game>();
-            FilterGames();
+            this.games = games; // Passes the value to the in class variable
+            this.filter = filter; // Passes the value to the in class variable
+            this.orderCriteria = orderCriteria; // Passes the value to the in class variable
+            tempList = new List<Game>(); // Iniciates a new list that will serve as a temporary list
+            FilterGames(); // Executes FilterGames()
 
-            SortGames();
+            SortGames(); // Executes SortGames()
             
         }
 
+        /// <summary>
+        /// Filters the game list
+        /// </summary>
         private void FilterGames() {
-            List<Game> temp = new List<Game>();
+            List<Game> temp = new List<Game>(); // Creates a new list to temporarly hold instances of Game
+            // Runs trough the dicionary passing every value into the temporary list
             foreach (KeyValuePair<string, Game> kvp in games) {
-                temp.Add(kvp.Value);
+                temp.Add(kvp.Value); // Adds an instance of Game to the list
             }
 
+            // Filters the game list using the filter parameters selecteb by the user
             IEnumerable<Game> filteredGame = temp.Where(game => (game.name.IndexOf(
                     filter.name, StringComparison.OrdinalIgnoreCase) >= 0 || filter.name == "") &&
                     (game.releaseDate >= filter.releaseDate || filter.releaseDate == null) &&
@@ -43,54 +54,57 @@ namespace lp2_Steam_List {
                     (game.categoryIncludeLevelEditor || !filter.categoryIncludeLevelEditor) &&
                     (game.categoryVRSupport || !filter.categoryVRSupport));
 
+            // Passes the values from one list to an other
             foreach (Game g in filteredGame) {
                 tempList.Add(g);
             }
         }
 
+        /// <summary>
+        /// Responsible for sorting all games acording to the selected sort method
+        /// </summary>
         private void SortGames() {
 
             switch (orderCriteria) {
-
                 case "ID":
-                    tempList = tempList.OrderBy(game => game.id).ToList();
+                    tempList = tempList.OrderBy(game => game.id).ToList(); // Sorts by ID
                     break;
 
                 case "nome":
-                    tempList = tempList.OrderBy(game => game.name).ToList();
+                    tempList = tempList.OrderBy(game => game.name).ToList(); // Sorts by Name
                     break;
 
                 case "data":
-                    tempList = tempList.OrderByDescending(game => game.releaseDate).ToList();
+                    tempList = tempList.OrderByDescending(game => game.releaseDate).ToList(); // Sorts by the Release Date Descending
                     break;
 
                 case "dlc":
-                    tempList = tempList.OrderByDescending(game => game.dlcCount).ToList();
+                    tempList = tempList.OrderByDescending(game => game.dlcCount).ToList(); // Sorts by number of Dlc Descending
                     break;
 
                 case "metacritic":
-                    tempList = tempList.OrderByDescending(game => game.metacritic).ToList();
+                    tempList = tempList.OrderByDescending(game => game.metacritic).ToList(); // Sorts by the metacritic score Descending
                     break;
 
                 case "recomendacoes":
-                    tempList = tempList.OrderByDescending(game => game.recommendationCount).ToList();
+                    tempList = tempList.OrderByDescending(game => game.recommendationCount).ToList(); // Sorts by the number of recomendations Descending
                     break;
 
                 case "nJogo":
-                    tempList = tempList.OrderByDescending(game => game.owners).ToList();
+                    tempList = tempList.OrderByDescending(game => game.owners).ToList(); // Sorts by number of owner Descending
                     break;
 
                 case "jJogo":
-                    tempList = tempList.OrderByDescending(game => game.numberOfPlayers).ToList();
-                    break;
+                    tempList = tempList.OrderByDescending(game => game.numberOfPlayers).ToList(); // Sorts by number of Players Descending
+                    break; 
 
                 case "achievements":
-                    tempList = tempList.OrderByDescending(game => game.achievementCount).ToList();
+                    tempList = tempList.OrderByDescending(game => game.achievementCount).ToList(); // Sorts by numer of Achievements Descending
                     break;
             }
 
+            // Passes all the values into the main list
             foreach (Game game in tempList) {
-                
                 Add(game);
             }
         }

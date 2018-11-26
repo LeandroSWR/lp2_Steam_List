@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace lp2_Steam_List {
+    /// <summary>
+    /// Holds all possible filters as variable to be later compared with the ones present in a GameList
+    /// </summary>
     class Filters {
-        public int requiredAge, metacritic, recommendationCount;
-        public string name = "";
-        public DateTime releaseDate;
+        public int requiredAge, metacritic, recommendationCount; // Declares all ints
+        public string name = ""; // Declares all strings
+        public DateTime releaseDate; // Declares all DateTimes
         public bool controllerSupport, platformWindows, platformLinux, platformMac,
             categorySinglePlayer, categoryMultiplayer, categoryCoop,
-            categoryIncludeLevelEditor, categoryVRSupport;
+            categoryIncludeLevelEditor, categoryVRSupport; // Declares all bools
 
-        public Filters() { }
+        public Filters() { } // Empty Filters constructor
     }
 }

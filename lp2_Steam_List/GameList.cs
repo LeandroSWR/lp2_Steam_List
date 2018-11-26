@@ -4,8 +4,8 @@ using System.IO;
 
 namespace lp2_Steam_List {
     class GameList : Dictionary<string, Game> {
-        static string path;
-        readonly string key;
+        string path; // Declares a new string
+        readonly string key; // Declares a new string
 
         public GameList(string key, string arg) {
             this.key = key;

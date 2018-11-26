@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace lp2_Steam_List {
+﻿namespace lp2_Steam_List {
 
     /// <summary>
     /// The program starts here
