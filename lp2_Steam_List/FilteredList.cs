@@ -17,10 +17,11 @@ namespace lp2_Steam_List {
         /// <param name="games">The main dictionary of Game</param>
         /// <param name="orderCriteria">Holds a string that represents the order criteria</param>
         public FilteredList(Filters filter, GameList games, string orderCriteria) {
+
             this.games = games; // Passes the value to the in class variable
             this.filter = filter; // Passes the value to the in class variable
             this.orderCriteria = orderCriteria; // Passes the value to the in class variable
-            tempList = new List<Game>(); // Iniciates a new list that will serve as a temporary list
+            tempList = new List<Game>(); // Initiates a new list that will serve as a temporary list
             FilterGames(); // Executes FilterGames()
 
             SortGames(); // Executes SortGames()
@@ -66,6 +67,7 @@ namespace lp2_Steam_List {
         private void SortGames() {
 
             switch (orderCriteria) {
+
                 case "ID":
                     tempList = tempList.OrderBy(game => game.id).ToList(); // Sorts by ID
                     break;
@@ -91,7 +93,7 @@ namespace lp2_Steam_List {
                     break;
 
                 case "nJogo":
-                    tempList = tempList.OrderByDescending(game => game.owners).ToList(); // Sorts by number of owner Descending
+                    tempList = tempList.OrderByDescending(game => game.owners).ToList(); // Sorts by number of Owners Descending
                     break;
 
                 case "jJogo":
