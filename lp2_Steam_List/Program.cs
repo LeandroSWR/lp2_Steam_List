@@ -5,8 +5,7 @@
     /// </summary>
     class Program {
 
-        // The first key to ever be used by the dictionary
-        // Will be used by the the first option
+        /** \brief The first key to ever be used by the dictionary */
         private static string DefaultKey { get; } = "ID";
 
         /// <summary>

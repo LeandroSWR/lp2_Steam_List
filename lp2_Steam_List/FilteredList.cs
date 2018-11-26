@@ -9,10 +9,14 @@ namespace lp2_Steam_List {
     /// </summary>
     class FilteredList : List<Game> {
 
-        private GameList games; // Declares a new GameList
-        private Filters filter; // Declares a new Filters
-        private List<Game> tempList; // Declares a new tempList
-        private string orderCriteria; // Declares a new oderCriteria
+        /** \brief Declares a new Game derived variable */
+        private GameList games;
+        /** \brief Declares a new Filters derived variable */
+        private Filters filter;
+        /** \brief Declares a new temporary List */
+        private List<Game> tempList;
+        /** \brief Declares a new orderCriteria */
+        private string orderCriteria;
 
         /// <summary>
         /// FilteredList Constructor

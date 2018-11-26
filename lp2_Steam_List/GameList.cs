@@ -7,8 +7,13 @@ namespace lp2_Steam_List {
     /// Class GameList functions a a Dictionary saving all the games from the selected file
     /// </summary>
     class GameList : Dictionary<string, Game> {
-        string path; // Declares a new string
-        readonly string key; // Declares a new string
+
+        /** \brief Defines the path of the file */
+        string path;
+
+        /** \brief The key of the Dictionary */
+        readonly string key;
+
         /// <summary>
         /// GameList constructor
         /// </summary>

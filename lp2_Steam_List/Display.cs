@@ -10,14 +10,22 @@ namespace lp2_Steam_List {
     /// </summary>
     class Display {
 
-        private readonly string key;       // The key attributed to the dictionary
-        private string id, orderCriteria;  // The ID given to a game on the file and the criteria from which they will be ordered
-        private int currentPage = 0;       // The currently selected page that shows info about a game
+        /** \brief The key attributed to the dictionary */
+        private readonly string key;
+        /** \brief The ID given to a game on the file */
+        private string id;
+        /** \brief The criteria from which the games will be ordered */
+        private string orderCriteria;
+        /** \brief The currently selected page that shows info about a game */
+        private int currentPage = 0;
 
-        // A few Class derived variables to be instanced later on
+        /** \brief GameList derived variable to be instanced later on */
         private GameList list;
+        /** \brief Filters derived variable to be instanced later on */
         private Filters filters;
+        /** \brief FilteredList derived variable to be instanced later on */
         private FilteredList filteredList;
+        /** \brief Game[] derived variable to be instanced later on */
         private Game[] filteredGameDisplay;
 
         /// <summary>
