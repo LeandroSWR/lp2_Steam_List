@@ -5,14 +5,50 @@ namespace lp2_Steam_List {
     /// Games contains all the information about a certain game
     /// </summary>
     class Game {
-
-        public int id, requiredAge, dlcCount, metacritic, movieCount, recommendationCount,
-            screenshotCount, owners, numberOfPlayers, achievementCount; // Declares all the necessary ints
-        public string name, aboutText; // Declares all the necessary strings
-        public DateTime releaseDate; // Declares all the necessary DateTimes
-        public bool controllerSupport, platformWindows, platformLinux, platformMac, 
-            categorySinglePlayer, categoryMultiplayer, categoryCoop, 
-            categoryIncludeLevelEditor, categoryVRSupport; // Declares all the necessary bools
+        /** \brief Game ID */
+        public int id;
+        /** \brief Required age to play the game */
+        public int requiredAge;
+        /** \brief Number of DLC the Game has */
+        public int dlcCount;
+        /** \brief Metacritic score */
+        public int metacritic;
+        /** \brief Number of movies the Game has */
+        public int movieCount;
+        /** \brief Number of recomendations */
+        public int recommendationCount;
+        /** \brief Total number of screenshots the Game has */
+        public int screenshotCount;
+        /** \brief Number of people that own the Game */
+        public int owners;
+        /** \brief Number of players the Game has */
+        public int numberOfPlayers;
+        /** \brief Number of Achievements the Game has */
+        public int achievementCount;
+        /** \brief Game name */
+        public string name;
+        /** \brief Text about the game */
+        public string aboutText;
+        /** \brief Game realease date */
+        public DateTime releaseDate;
+        /** \brief Game has controller support */
+        public bool controllerSupport;
+        /** \brief Game is for platform Windows */
+        public bool platformWindows;
+        /** \brief Game is for platform Linux */
+        public bool platformLinux;
+        /** \brief Game is for platform Mac */
+        public bool platformMac;
+        /** \brief Game is Single Player */
+        public bool categorySinglePlayer;
+        /** \brief Game is Multi Player */
+        public bool categoryMultiplayer;
+        /** \brief Game has Co-op */
+        public bool categoryCoop;
+        /** \brief Game includes level editor */
+        public bool categoryIncludeLevelEditor;
+        /** \brief Game supports VR */
+        public bool categoryVRSupport;
         public Uri supportURL, headerImage, website; // Declares all the necessary Uris
 
         /// <summary>
