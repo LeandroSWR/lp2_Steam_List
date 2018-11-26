@@ -139,8 +139,10 @@ namespace lp2_Steam_List {
             // Simple local variable that gets later incremented
             int i = 0;
             
+            // Foreach loop that adds a given filter to a game...
             foreach (Game g in filteredList) {
 
+                // ...if that game exists in the list
                 if (g != null) {
 
                     filteredGameDisplay[i] = g;
@@ -152,114 +154,169 @@ namespace lp2_Steam_List {
             PageSelection();
         }
 
+        /// <summary>
+        /// Method that reads the user's input on the Menu 
+        /// </summary>
         private void Selection() {
 
+            // Reads the input
             switch (Console.ReadLine()) {
 
+                // Asks for an ID and shows the corresponding game
                 case "1":
+
+                    Console.Clear();
                     Console.WriteLine("Input game ID:");
                     id = Console.ReadLine();
                     DisplayInformation();
                     break;
 
+                // Draws the SearchMenu
                 case "2":
-                    DrawSearchMenu();
 
+                    DrawSearchMenu();
                     break;
 
+                // Closes the Console
                 case "3":
 
                     Environment.Exit(0);
                     break;
                     
+                // Draws the Menu if the input is incorrect
                 default:
 
                     DrawMenu();
                     break;
             }
+
+            // Draws the Menu
             DrawMenu();
         }
 
+        /// <summary>
+        /// Method that reads the user's input on the SearchMenu
+        /// </summary>
         private void SearchMenuSelection() {
 
             switch (Console.ReadLine()) {
 
+                // Draws the 'CriteriaMenu'
                 case "1":
+
                     OrderCriteria();
                     break;
 
+                // Draws the 'FiltersMenu'
                 case "2":
-                    GameFilters();
 
+                    GameFilters();
                     break;
 
+                // Initiates the filter by taking in previously set parameters
                 case "3":
 
                     filteredList = new FilteredList(filters, list, orderCriteria);
-
                     GamePage();
-
                     break;
 
+                // Draws the Menu
                 case "4":
 
                     DrawMenu();
                     break;
 
+                // Draws the SearchMenu
                 default:
 
                     DrawSearchMenu();
                     break;
             }
+
+            // The method calls itself after exiting the 'switch'
             SearchMenuSelection();
         }
 
+        /// <summary>
+        /// Method that reads the user's input on the 'CriteriaMenu'
+        /// </summary>
         private void CriteriaSelection() {
+
             switch (Console.ReadLine()) {
+
+                // Sort by ID (ascending)
                 case "1":
                     orderCriteria = "ID";
                     break;
+
+                // Sort by Name (ascending)
                 case "2":
                     orderCriteria = "nome";
                     break;
+
+                // Sort by Date (descending)
                 case "3":
                     orderCriteria = "data";
                     break;
+
+                // Sort by DLC Count (descending)
                 case "4":
                     orderCriteria = "dlc";
                     break;
+
+                // Sort by MetaCritic Score (descending)
                 case "5":
                     orderCriteria = "metacritic";
                     break;
+
+                // Sort by Recommendations Count (descending)
                 case "6":
                     orderCriteria = "recomendacoes";
                     break;
+
+                // Sort by number of Owners (descending)
                 case "7":
                     orderCriteria = "nJogo";
                     break;
+
+                // Sort by number of Players (descending)
                 case "8":
                     orderCriteria = "jJogo";
                     break;
+
+                // Sort by number of Achievements (descending)
                 case "9":
                     orderCriteria = "achievements";
                     break;
+
+                // Goes back to the SearchMenu
                 case "0":
                     DrawSearchMenu();
                     break;
+
+                // Draws the CriteriaMenu if the input is incorrect
                 default:
                     CriteriaSelection();
                     break;
             }
+
+            // Draws the SearchMenu
             DrawSearchMenu();
         }
 
+        /// <summary>
+        /// Method that reads the user's input on the 'FiltersMenu' 
+        /// </summary>
         private void FilterSelection() {
+
             switch (Console.ReadLine()) {
+
                 case "1":
                     Console.Clear();
                     Console.WriteLine("Intruduz o nome:");
                     filters.name = Console.ReadLine();
                     break;
+
                 case "2":
                     Console.Clear();
                     Console.WriteLine("Ex de data: (Nov 1 2000)");
@@ -267,60 +324,79 @@ namespace lp2_Steam_List {
                     string date = Console.ReadLine();
                     DateTime.TryParse(date, out filters.releaseDate);
                     break;
+
                 case "3":
                     Console.Clear();
                     Console.WriteLine("Introduz a idade apartir da qual o jogo pode se acedido:");
                     filters.requiredAge = Convert.ToInt32(Console.ReadLine());
                     break;
+
                 case "4":
                     Console.Clear();
                     Console.WriteLine("Introduz a nota minima de metacritic:");
                     filters.metacritic = Convert.ToInt32(Console.ReadLine());
                     break;
+
                 case "5":
                     Console.Clear();
                     Console.WriteLine("Introduz o numero minimo de recomendações:");
                     filters.recommendationCount = Convert.ToInt32(Console.ReadLine());
                     break;
+
                 case "6":
                     filters.controllerSupport = true;
                     break;
+
                 case "7":
                     filters.platformWindows = true;
                     break;
+
                 case "8":
                     filters.platformLinux = true;
                     break;
+
                 case "9":
                     filters.platformMac = true;
                     break;
+
                 case "10":
                     filters.categorySinglePlayer = true;
                     break;
+
                 case "11":
                     filters.categoryMultiplayer = true;
                     break;
+
                 case "12":
                     filters.categoryCoop = true;
                     break;
+
                 case "13":
                     filters.categoryIncludeLevelEditor = true;
                     break;
+
                 case "14":
                     filters.categoryVRSupport = true;
                     break;
+
                 case "0":
                     DrawSearchMenu();
                     break;
+
                 default:
                     CriteriaSelection();
                     break;
             }
+
             GameFilters();
         }
 
+        /// <summary>
+        /// Method responsible for the slection of the games' pages
+        /// </summary>
         private void PageSelection() {
 
+            // Clears the Console
             Console.Clear();
 
             Console.WriteLine(filteredGameDisplay[currentPage].ToString() + "\n");
@@ -365,7 +441,11 @@ namespace lp2_Steam_List {
         private void DisplayInformation() {
             
             foreach (KeyValuePair<string, Game> kvp in list) {
+
                 if (kvp.Key == id) {
+
+                    Console.Clear();
+                    Console.WriteLine(kvp.Value.ToString());
                     DisplayImage(kvp.Value);
                     Console.ReadLine();
                 }
@@ -377,7 +457,9 @@ namespace lp2_Steam_List {
             string imagePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
             using (WebClient client = new WebClient()) {
+
                 if (game.headerImage != null) {
+
                     client.DownloadFile(game.headerImage, imagePath + game.id + ".jpg");
                     Process.Start(imagePath + game.id + ".jpg");
                 }
