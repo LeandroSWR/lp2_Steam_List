@@ -20,8 +20,10 @@ namespace lp2_Steam_List {
         /// </summary>
         /// <param name="stream">string contaning all the info about the game</param>
         public Game(string stream) {
+
             // Parses the string to later be saved into individuale variables
             string[] parse = stream.Split(',');
+
             // Calls SaveData() method passing in the pars string array
             SaveData(parse);
         }
@@ -60,10 +62,12 @@ namespace lp2_Steam_List {
         }
 
         /// <summary>
-        /// Overide the ToString() method to print a formated string specefing all the info about the game
+        /// Overide the ToString() method to print a formated string specifying all the info about the game
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns all the info</returns>
         public override string ToString() {
+
+            // The Message itself
             return string.Format($"ID: {id}\nName: {name}\n" +
                 $"ReleaseDate: {releaseDate.ToString("dd/MM/yyyy")}\nRequiredAge: {requiredAge}" +
                 $"\nDLCCount: {dlcCount}\nMetacritic: {metacritic}\nMovieCount: {movieCount}\n" +
