@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace lp2_Steam_List {
+    /// <summary>
+    /// FilteredList class is responsible for Filtering and organising all games acording to the
+    /// select user preferences
+    /// </summary>
     class FilteredList : List<Game> {
 
         private GameList games; // Declares a new GameList
@@ -67,41 +71,41 @@ namespace lp2_Steam_List {
         private void SortGames() {
 
             switch (orderCriteria) {
-
+                // Sorts by ID
                 case "ID":
-                    tempList = tempList.OrderBy(game => game.id).ToList(); // Sorts by ID
+                    tempList = tempList.OrderBy(game => game.id).ToList(); 
                     break;
-
+                // Sorts by Name
                 case "nome":
-                    tempList = tempList.OrderBy(game => game.name).ToList(); // Sorts by Name
+                    tempList = tempList.OrderBy(game => game.name).ToList(); 
                     break;
-
+                // Sorts by the Release Date Descending
                 case "data":
-                    tempList = tempList.OrderByDescending(game => game.releaseDate).ToList(); // Sorts by the Release Date Descending
+                    tempList = tempList.OrderByDescending(game => game.releaseDate).ToList(); 
                     break;
-
+                // Sorts by number of Dlc Descending
                 case "dlc":
-                    tempList = tempList.OrderByDescending(game => game.dlcCount).ToList(); // Sorts by number of Dlc Descending
+                    tempList = tempList.OrderByDescending(game => game.dlcCount).ToList(); 
                     break;
-
+                // Sorts by the metacritic score Descending
                 case "metacritic":
-                    tempList = tempList.OrderByDescending(game => game.metacritic).ToList(); // Sorts by the metacritic score Descending
+                    tempList = tempList.OrderByDescending(game => game.metacritic).ToList(); 
                     break;
-
+                // Sorts by the number of recomendations Descending
                 case "recomendacoes":
-                    tempList = tempList.OrderByDescending(game => game.recommendationCount).ToList(); // Sorts by the number of recomendations Descending
+                    tempList = tempList.OrderByDescending(game => game.recommendationCount).ToList(); 
                     break;
-
+                // Sorts by number of Owners Descending
                 case "nJogo":
-                    tempList = tempList.OrderByDescending(game => game.owners).ToList(); // Sorts by number of Owners Descending
+                    tempList = tempList.OrderByDescending(game => game.owners).ToList(); 
                     break;
-
+                // Sorts by number of Players Descending
                 case "jJogo":
-                    tempList = tempList.OrderByDescending(game => game.numberOfPlayers).ToList(); // Sorts by number of Players Descending
-                    break; 
-
+                    tempList = tempList.OrderByDescending(game => game.numberOfPlayers).ToList(); 
+                    break;
+                // Sorts by numer of Achievements Descending
                 case "achievements":
-                    tempList = tempList.OrderByDescending(game => game.achievementCount).ToList(); // Sorts by numer of Achievements Descending
+                    tempList = tempList.OrderByDescending(game => game.achievementCount).ToList(); 
                     break;
             }
 

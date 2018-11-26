@@ -308,15 +308,15 @@ namespace lp2_Steam_List {
         /// Method that reads the user's input on the 'FiltersMenu' 
         /// </summary>
         private void FilterSelection() {
-
+            // Reads the user input
             switch (Console.ReadLine()) {
-
+                // Asks fot the name
                 case "1":
                     Console.Clear();
                     Console.WriteLine("Intruduz o nome:");
                     filters.name = Console.ReadLine();
                     break;
-
+                // Asks for the date
                 case "2":
                     Console.Clear();
                     Console.WriteLine("Ex de data: (Nov 1 2000)");
@@ -324,70 +324,70 @@ namespace lp2_Steam_List {
                     string date = Console.ReadLine();
                     DateTime.TryParse(date, out filters.releaseDate);
                     break;
-
+                // Asks for the age
                 case "3":
                     Console.Clear();
                     Console.WriteLine("Introduz a idade apartir da qual o jogo pode se acedido:");
                     filters.requiredAge = Convert.ToInt32(Console.ReadLine());
                     break;
-
+                // Asks for the minimum metacritic score
                 case "4":
                     Console.Clear();
                     Console.WriteLine("Introduz a nota minima de metacritic:");
                     filters.metacritic = Convert.ToInt32(Console.ReadLine());
                     break;
-
+                // Asks for the minumum number of recomendations
                 case "5":
                     Console.Clear();
                     Console.WriteLine("Introduz o numero minimo de recomendações:");
                     filters.recommendationCount = Convert.ToInt32(Console.ReadLine());
                     break;
-
+                // Sets the controllerSupport filter to true
                 case "6":
                     filters.controllerSupport = true;
                     break;
-
+                // Sets the platformWindows filter to true
                 case "7":
                     filters.platformWindows = true;
                     break;
-
+                // Sets the platformLinux filter to true
                 case "8":
                     filters.platformLinux = true;
                     break;
-
+                // Sets the platformMac filter to true
                 case "9":
                     filters.platformMac = true;
                     break;
-
+                // Sets the categorySinglePlayer filter to true
                 case "10":
                     filters.categorySinglePlayer = true;
                     break;
-
+                // Sets the categoryMultiplayer filter to true
                 case "11":
                     filters.categoryMultiplayer = true;
                     break;
-
+                // Sets the categoryCoop filter to true
                 case "12":
                     filters.categoryCoop = true;
                     break;
-
+                // Sets the categoryIncludeLevelEditor filter to true
                 case "13":
                     filters.categoryIncludeLevelEditor = true;
                     break;
-
+                // Sets the categoryVRSupport filter to true
                 case "14":
                     filters.categoryVRSupport = true;
                     break;
-
+                // Calls the DrawSearchMenu method
                 case "0":
                     DrawSearchMenu();
                     break;
-
+                    // Calls the CriteriaSelection method
                 default:
                     CriteriaSelection();
                     break;
             }
-
+            // Goes back to the Game Filter selection
             GameFilters();
         }
 
@@ -398,70 +398,75 @@ namespace lp2_Steam_List {
 
             // Clears the Console
             Console.Clear();
-
+            // Displays the currently selected game information
             Console.WriteLine(filteredGameDisplay[currentPage].ToString() + "\n");
-
+            // Displays a information bar letting the user know the current page
             Console.WriteLine($"Left Arrow - Go Back  | {currentPage} - " +
                 $"{filteredGameDisplay.Length - 1} |  Right Arrow - Go Forward\n");
-            Console.WriteLine("Esc + Enter para sair.");
-
+            Console.WriteLine("Esc + Enter para sair."); // Displays info on how to go back
+            // Reads the user input
             switch (Console.ReadKey().Key) {
-
+                // Asks if the input was the left arrow
                 case ConsoleKey.LeftArrow:
-
+                    // Asks if the current page is not 0
                     if (currentPage != 0) {
-
+                        // if it's not 0 decreasses the value by 1
                         currentPage--;
                     }
 
                     break;
-
+                // Asks if the input was the right arrow
                 case ConsoleKey.RightArrow:
-
-                    if(currentPage < filteredGameDisplay.Length - 1) {
-
+                    // Asks if the current page number is lower than the array size
+                    if (currentPage < filteredGameDisplay.Length - 1) {
+                        // if it's not increasses the value by 1
                         currentPage++;
                     }
 
                     break;
-
+                    // Asks if the input was the Esc kry
                 case ConsoleKey.Escape:
-
+                    // If it was return
                     return;
 
                 default:
-
+                    // The default rebots the method in case there was a wrong input
                     PageSelection();
                     break;
             }
-
+            // After switching the page we rebot the method to way for the next input
             PageSelection();
         }
-
+        /// <summary>
+        /// Displays a Game information
+        /// </summary>
         private void DisplayInformation() {
-            
+            // Goes throught the dictionary searching for the selected key by the user
             foreach (KeyValuePair<string, Game> kvp in list) {
-
+                // Asks if the current game key is equal to the one we're searching for
                 if (kvp.Key == id) {
-
+                    // If it is we clear the console
                     Console.Clear();
-                    Console.WriteLine(kvp.Value.ToString());
-                    DisplayImage(kvp.Value);
-                    Console.ReadLine();
+                    Console.WriteLine(kvp.Value.ToString()); // Displays the game information
+                    DisplayImage(kvp.Value); // Call a method to download and open the header image
+                    Console.ReadLine(); // Awaits for a user input to continue
                 }
             }
         }
-
+        /// <summary>
+        /// Responsible for downloading and opening the header image for a determined game
+        /// </summary>
+        /// <param name="game">Current Game</param>
         private void DisplayImage(Game game) {
-
-            string imagePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
+            // Set the default path to be the users Desktop
+            string imagePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\";
+            // Create a new WebClient
             using (WebClient client = new WebClient()) {
-
+                // Verify the the selected game does have a header image
                 if (game.headerImage != null) {
-
-                    client.DownloadFile(game.headerImage, imagePath + game.id + ".jpg");
-                    Process.Start(imagePath + game.id + ".jpg");
+                    // If so Download the image to the Desktop
+                    client.DownloadFile(game.headerImage, $"{imagePath}{game.id}.jpg");
+                    Process.Start($"{imagePath}{game.id}.jpg"); // Opens the downloaded image
                 }
             }
         }
